@@ -26,6 +26,14 @@ namespace DapperEFCorePerformanceBenchmarks.TestData
             AddPlayers(players);
         }
 
+        public static void RecreateDB() {
+            using (SportContextEfCore context = new SportContextEfCore(GetOptions()))
+            {
+                context.Database.EnsureDeleted();
+                context.Database.EnsureCreated();
+            }
+        }
+
         private static void AddPlayers(List<PlayerDTO> players)
         {
             using (SportContextEfCore context = new SportContextEfCore(GetOptions()))

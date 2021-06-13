@@ -17,6 +17,7 @@ namespace DapperEFCorePerformanceBenchmarks
         public static int NumRuns { get; set; }
         static void Main(string[] args)
         {
+            Database.RecreateDB();
             char input;
             do
             {
@@ -58,7 +59,7 @@ namespace DapperEFCorePerformanceBenchmarks
                                 players.AddRange(newPlayers);
                             }
                         }
-
+                        
                         Database.Reset();
                         Database.Load(sports, teams, players);
 
@@ -71,6 +72,9 @@ namespace DapperEFCorePerformanceBenchmarks
 
                                 EntityFrameworkCore firstEfCoreTest = new EntityFrameworkCore();
                                 RunTests(i, Framework.EntityFrameworkCore, firstEfCoreTest);
+
+                                //EntityFrameworkRawCore firstRawEfCoreTest = new EntityFrameworkRawCore();
+                                //RunTests(i, Framework.EntityFrameworkRawCore, firstRawEfCoreTest);
 
                                 EntityFrameworkCoreWithTracking firstTrackingTest = new EntityFrameworkCoreWithTracking();
                                 RunTests(i, Framework.EntityFrameworkCoreWithTracking, firstTrackingTest);
@@ -85,6 +89,10 @@ namespace DapperEFCorePerformanceBenchmarks
 
                             EntityFrameworkCore efCoreTest = new EntityFrameworkCore();
                             testResults.AddRange(RunTests(i, Framework.EntityFrameworkCore, efCoreTest));
+
+                            //EntityFrameworkRawCore rawEfCoreTest = new EntityFrameworkRawCore();
+                            //testResults.AddRange(RunTests(i, Framework.EntityFrameworkRawCore, rawEfCoreTest));
+
                         }
                         ProcessResults(testResults);
 

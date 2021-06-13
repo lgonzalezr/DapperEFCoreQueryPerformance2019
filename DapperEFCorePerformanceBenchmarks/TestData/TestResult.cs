@@ -16,6 +16,7 @@ namespace DapperEFCorePerformanceBenchmarks.TestData
     public enum Framework
     {
         EntityFrameworkCore,
+        EntityFrameworkRawCore,
         EntityFrameworkCoreWithTracking,
         Dapper
     }
